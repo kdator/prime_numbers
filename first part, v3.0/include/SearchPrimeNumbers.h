@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SEARCH_PRIME_NUMBERS_H_
+#define SEARCH_PRIME_NUMBERS_H_
 
 /*
 
@@ -48,3 +49,5 @@ void search_by_dividers_enumeration(long lower_limit,
                                     long upper_limit,
                                     int** answer_array_pointer,
                                     int* quantity);
+
+#endif /* SEARCH_PRIME_NUMBERS_H_ */

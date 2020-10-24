@@ -10,7 +10,7 @@
 int main(int argc, char *argv[]) {
 
   // Проверка параметров вызова программы.
-  long* parameters_array = check_call_parameters(argc, argv);
+  long* parameters_array = ParametersHandler_checkCallParameters(argc, argv);
 
   // Создаётся указатель для записи простых чисел, который будет
   // передан в функцию для поиска.

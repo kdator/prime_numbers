@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "search_prime_numbers.h"
+#include "SearchPrimeNumbers.h"
 #include "bitset.h"
 
 void search_by_sieve_of_eratosthenes(long lower_limit,
