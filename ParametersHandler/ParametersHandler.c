@@ -5,7 +5,7 @@
 #include "ParametersHandler.h"
 
 static int* checkOneParameter(char* param) {
-  int* arguments_array = (int*)malloc(1 * sizeof(int));
+  int* arguments_array = (int*)malloc(2 * sizeof(int));
 
   for (int i = 0; i < strlen(param); i++) {
     if ((param[i] >= '0' && param[i] <= '9') || param[0] == '-')
@@ -14,7 +14,8 @@ static int* checkOneParameter(char* param) {
       return NULL;     
   }
 
-  sscanf(param, "%i", &arguments_array[0]);
+  arguments_array[0] = 1;
+  sscanf(param, "%i", &arguments_array[1]);
   return arguments_array;
 }
 
@@ -35,13 +36,13 @@ static int* checkTwoParameters(char* first_param, char* second_param) {
       return NULL;     
   }
 
-  sscanf(first_param, "%i", arguments_array[0]);
-  sscanf(second_param, "%i", arguments_array[1]);
+  sscanf(first_param, "%i", &arguments_array[0]);
+  sscanf(second_param, "%i", &arguments_array[1]);
   return arguments_array;
 }
 
 int* ParametersHandler_checkCallParameters(int argc, char* argv[]) {
-  int* arguments_array = NULL;
+  int* arguments_array;
 
   switch (argc) {
     case 2:
@@ -50,7 +51,7 @@ int* ParametersHandler_checkCallParameters(int argc, char* argv[]) {
     case 3:
       arguments_array = checkTwoParameters(argv[1], argv[2]);
       break;
-    default: return NULL;
+    default: arguments_array = NULL;
   }
 
   return arguments_array;

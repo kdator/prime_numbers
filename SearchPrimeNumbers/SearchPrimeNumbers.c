@@ -5,8 +5,8 @@
 #include "SearchPrimeNumbers.h"
 #include "bitset.h"
 
-void search_by_sieve_of_eratosthenes(long lower_limit,
-                                     long upper_limit,
+void search_by_sieve_of_eratosthenes(int lower_limit,
+                                     int upper_limit,
                                      int** answer_array_pointer,
                                      int* quantity) {
 
