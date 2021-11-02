@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13.4)
-project (bitset)
+project (Bitset)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../variables.cmake)
 
@@ -8,7 +8,7 @@ add_definitions(${COMPILER_OPTS})
 set (PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set (PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR})
 
-set(PROJECT_SRCS ${PROJECT_SOURCE_DIR}/bitset.c)
+set(PROJECT_SRCS ${PROJECT_SOURCE_DIR}/Bitset.c)
 
 include_directories(${PROJECT_INCLUDE_PATH})
 include_directories(${PROJECT_INCLUDE_DIR})

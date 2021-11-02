@@ -1,38 +1,27 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <pthread.h>
 
 #include "SearchPrimeNumbers.h"
 #include "ParametersHandler.h"
-#include "bitset.h"
+#include "Bitset.h"
 
 int main(int argc, char *argv[]) {
-  int* parameters_array = ParametersHandler_checkCallParameters(argc, argv);
-  if (parameters_array == NULL) {
+  int* params = ParametersHandler_checkCallParameters(argc, argv);
+  if (params == NULL) {
     printf("\nAn error occured while reading the call parameters. Please, check them again.\n");
     return 0;
   }
 
-  int* prime_numbers_array = NULL;
+  int* prime_numbers = NULL;
   int quantity = 0;                    
 
   clock_t time = clock();
-  if ((parameters_array[1] - parameters_array[0]) <= 300000 &&
-      parameters_array[1] >= 10000000 &&
-      parameters_array[0] >= 10000000) {
-    search_by_dividers_enumeration(
-      parameters_array[0],
-      parameters_array[1],
-      &prime_numbers_array,
-      &quantity);
-  } else {
-    search_by_sieve_of_eratosthenes(
-      parameters_array[0],
-      parameters_array[1],
-      &prime_numbers_array,
-      &quantity);
-  }
+  if ((params[1] - params[0]) <= 300000 &&
+      params[1] >= 10000000 && params[0] >= 10000000)
+    SearchPrimeNumbers_dividersEnumeration(params[0], params[1], &prime_numbers, &quantity);
+  else
+    SearchPrimeNumbers_sieveOfEratosthenes(params[0], params[1], &prime_numbers, &quantity);
 
   // Замер времени заканчивается.
   time = clock() - time;
@@ -45,26 +34,26 @@ int main(int argc, char *argv[]) {
 	char action;
 	scanf("%c", &action);
 	if (action == 'Y' || action == 'y') {
-    if (parameters_array[0] < 0 &&
-        parameters_array[1] < 0) {
+    if (params[0] < 0 &&
+        params[1] < 0) {
       exit(0);
     } else {
       // Если запустился поиск по алгоритму "Решето Эратосфена".
-      if (get_bit(1, prime_numbers_array) == 1) { 
-        for (int i = (parameters_array[0] - 1); i < parameters_array[1]; i++) {
-          if (i > 0 && get_bit(i, prime_numbers_array) == 1) {
+      if (Bitset_getBit(1, prime_numbers) == 1) { 
+        for (int i = (params[0] - 1); i < params[1]; i++) {
+          if (i > 0 && Bitset_getBit(i, prime_numbers) == 1) {
             printf("%i is a prime number.\n", i + 1);
           }
         }
       } else {  // Если запустился поиск по перебору делителей.
         for (int i = 0; i < quantity; i++) {
-          printf("%i is a prime number.\n", prime_numbers_array[i]);
+          printf("%i is a prime number.\n", prime_numbers[i]);
         }
       }
     }
   }
 
-  free(parameters_array);
-  free(prime_numbers_array);
+  free(params);
+  free(prime_numbers);
   return 0;
 }

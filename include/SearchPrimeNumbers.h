@@ -2,9 +2,6 @@
  * \file SearchPrimeNumbers.h
  * \author kolpakov dmitrii
  * \date 2020-10-25
- * \brief Данный хедер содержит в себе функции по поиску простых чисел в массиве.
- * \todo Добавить функцию для печати результата на консоль + поправить комментарии к стилю
- *       doxygen.
  */
 #ifndef SEARCH_PRIME_NUMBERS_H_
 #define SEARCH_PRIME_NUMBERS_H_
@@ -33,30 +30,21 @@
  * \param[out] answer_array_ptr по этому указателю будет записан массив с простыми числами.
  * \param[out] quantity количество простых чисел.
  */
-void search_by_sieve_of_eratosthenes(int lower_limit, int upper_limit,
-                                     int** answer_array_ptr, int* quantity);
-/*
+void SearchPrimeNumbers_sieveOfEratosthenes(int lower_limit, int upper_limit,
+                                            int** answer_array_ptr, int* quantity);
 
-  Эта функция реализует поиск простых чисел методом полного перебора
-  делителей.
-  Функция принимает в качестве параметров границы диапазона, указатель
-  на указатель для записи простых чисел в массив и указатель на целочисленную 
-  переменную для записи в неё найденное количество простых чисел.
-
-  1) Если число целочисленно делится на один из своих делителей, то оно
-     не простое и происходит переход к следующему числу для проверки.
-
-
-  2) Если число является простым, то оно записывается в массив, происходит
-     переход на новую итерацию и к пункту 1.
-
-  Функция ничего не возвращает.
-
-*/
-void search_by_dividers_enumeration(long lower_limit,
-                                    long upper_limit,
-                                    int** answer_array_pointer,
-                                    int* quantity);
-
+/**
+ * \brief Найти простые числа перебором делителей. 
+ * 
+ * Память под массив простых чисел выделяется самой функцией. Для освобождения
+ * использоовать free().
+ * 
+ * \param[in] lower_limit нижняя граница поиска.
+ * \param[in] upper_limit верхняя граница поиска.
+ * \param[out] answer_array_ptr по этому указателю будет записан массив с простыми числами.
+ * \param[out] quantity количество простых чисел. 
+ */
+void SearchPrimeNumbers_dividersEnumeration(int lower_limit, int upper_limit,
+                                            int** answer_array_pointer, int* quantity);
 
 #endif /* SEARCH_PRIME_NUMBERS_H_ */

@@ -17,8 +17,8 @@ add_executable(${PROJECT_NAME} ${MAIN_SRC})
 
 add_subdirectory(ParametersHandler)
 add_subdirectory(SearchPrimeNumbers)
-add_subdirectory(bitset)
+add_subdirectory(Bitset)
 
 target_link_libraries(${PROJECT_NAME} ParametersHandler)
 target_link_libraries(${PROJECT_NAME} SearchPrimeNumbers)
-target_link_libraries(${PROJECT_NAME} bitset)
+target_link_libraries(${PROJECT_NAME} Bitset)
